@@ -16,8 +16,8 @@ output:
 + Are there differences in activity patterns between weekdays and weekends?
 
 ## **Loading and preprocessing the data**
-*+Load the data (i.e. read.csv())*
-*+Process/transform the data (if necessary) into a format suitable for your analysis*  
+*Load the data (i.e. read.csv())*  
+*Process/transform the data (if necessary) into a format suitable for your analysis*  
 #### Loading and unzipping the data. Looking at the summary of the data set. 
 ```{r echo=TRUE} 
 unzip("./activity.zip")
