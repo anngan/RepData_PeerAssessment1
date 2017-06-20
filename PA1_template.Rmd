@@ -41,8 +41,16 @@ medianS
 ```
 
 ## **What is the average daily activity pattern?**
-
-
+#### Creating a plot of of the 5-minute interval and the average number of taken steps.
+```{r echo=TRUE} 
+steps1 <- aggregate(steps~interval, data=activityData, mean, na.rm=TRUE)
+plot(steps~interval, data=steps1, type="l")
+```
+#### Calculating which interval contains the maximum number of steps and assigning it to variable MAX.
+```{r echo=TRUE} 
+MAX <- stepsPerInterval[which.max(stepsPerInterval$steps),]$interval
+MAX
+```
 
 ## **Imputing missing values**
 
