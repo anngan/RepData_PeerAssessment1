@@ -7,7 +7,7 @@ output:
 
 
 ## Loading and preprocessing the data
-# Loading and unzipping the data. Looking at the summary of the data set. 
+### Loading and unzipping the data. Looking at the summary of the data set. 
 ```{r echo=TRUE} 
 unzip("./activity.zip")
 activityData <- read.csv("./activity.csv")
