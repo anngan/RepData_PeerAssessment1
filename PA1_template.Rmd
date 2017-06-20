@@ -23,8 +23,22 @@ summary(activityData)
 ```
 
 ## **What is mean total number of steps taken per day?**
+#### Counting the steps per day and assigning the result to the variable S. Plotting a histogram on its basis.
+```{r echo=TRUE} 
+S <- aggregate(steps ~ date, activityData, sum, na.rm=TRUE)
+hist(S$steps)
+```
 
+#### Calculating the mean of steps per day. Calculating the median of steps per day.
+```{r echo=TRUE} 
+meanS <- mean(S$steps)
+meanS
+```
 
+```{r echo=TRUE} 
+medianS <- median(S$steps)
+medianS
+```
 
 ## **What is the average daily activity pattern?**
 
