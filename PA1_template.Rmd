@@ -53,7 +53,36 @@ MAX
 ```
 
 ## **Imputing missing values**
+#### Calculating the total number of the missing values.
+```{r echo=TRUE}
+totalValuesMissings <- sum(is.na(activityData$steps))
+totalValuesMissings
+```
+####  Creating the average number of steps per weekday and interval and assigning it to the variable av.
+```{r echo=TRUE}
+av <- ddply(clean, .(interval, day), summarize, Avg = mean(steps))
+```
 
+#### Create a dataset with the missing values and merging it with the average weekday interval for substitution.
+```{r echo=TRUE}
+nadata<- activity[is.na(activity$steps),]
+newdata<-merge(nadata, av, by=c("interval", "day"))
+```
 
+#### Cleaning and merging the data set. Comparing the data.
+```{r echo=TRUE}
+newdata2<- newdata[,c(6,4,1,2,5)]
+colnames(newdata2)<- c("steps", "date", "interval", "day", "DateTime")
+mergeData <- rbind(clean, newdata2)
+sumTable2 <- aggregate(mergeData$steps ~ mergeData$date, FUN=sum, )
+colnames(sumTable2)<- c("Date", "Steps")
+as.integer(mean(sumTable2$Steps))
+```
+#### Creating the histogram.
+```{r echo=TRUE}
+hist(sumTable2$Steps, breaks=5, xlab="Steps", main = "Total Steps per Day with NAs Fixed", col="Black")
+hist(sumTable$Steps, breaks=5, xlab="Steps", main = "Total Steps per Day with NAs Fixed", col="Grey", add=T)
+legend("topright", c("Imputed Data", "Non-NA Data"), fill=c("black", "grey") )
+```
 
 ## **Are there differences in activity patterns between weekdays and weekends?**
